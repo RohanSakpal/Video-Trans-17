@@ -1,0 +1,222 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  
+    .subContainer {
+      display: flex;
+      flex-direction: row;
+      height: 60%;
+  
+      .videoPlayer {
+        width: 50%;
+  
+        header {
+          display: flex;
+          align-items: center;
+          height: 50px;
+          button {
+            padding: 15px;
+            //border-radius: 5px;
+            //margin-right: 5px;
+            border: 0px;
+            height: 100%;
+            background-color: #085bb3;
+            color: #fff;
+            margin: 0px;
+            //flex: 1;
+            //max-width: 100px;
+            // margin: 5px;
+            cursor: pointer;
+            transition: 0.2s ease-in-out;
+  
+            &:hover{
+              background-color: darken(#085bb3, 10%);
+  
+            }
+          }
+  
+          .titleHeader{
+            display: flex;
+            flex-direction: column;
+            padding: 5px 15px;
+          }
+  
+  
+          .titleHeader p {
+            margin: 0;
+            font-size: 14px;
+            color: #888;
+  
+            span {
+              font-weight: bolder;
+              color: black;
+            }
+          }
+        }
+  
+        main {
+          height: calc(100% - 50px);
+          video {
+            width: 100%;
+            height: 100%;
+            border: 1px solid;
+          }
+        }
+      }
+  
+      .transcriptContainer {
+        width: 50%;
+        height: 100%;
+  
+        .transcript-tabs {
+          display: flex;
+          height: 50px;
+  
+          .tab {
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            background-color: #f0f4f8;
+            cursor: pointer;
+            transition: background-color 0.3s;
+  
+            &.active {
+              background-color: #085bb3;
+              border-top: 3px solid #667eea;
+              font-weight: bold;
+              color: #fff;
+            }
+          }
+        }
+  
+        .tab.active {
+          background-color: #fff;
+          border-top: 3px solid #667eea;
+          font-weight: bold;
+        }
+  
+        .transcript-content {
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          padding: 15px;
+          overflow-y: auto;
+          background-color: #f9f9f9;
+          height: calc(100% - 50px);
+  
+          .transcript-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+  
+            input {
+              margin-right: 10px;
+              margin-top: 3px;
+            }
+  
+            span {
+              line-height: 1.5;
+              cursor: pointer;
+            }
+          }
+  
+          .highlight {
+            background-color: lightblue;
+          }
+        }
+      }
+    }
+  
+    .geminiContainer {
+      border: 1px solid;
+      height: 40%;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 0;
+  
+      .chat-container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: 75%;
+        overflow: auto;
+  
+        .message {
+          display: flex;
+          align-items: flex-start;
+          margin-bottom: 20px;
+  
+          .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin-right: 10px;
+          }
+  
+          .user-avatar {
+            background-color: #007bff;
+          }
+  
+          .team-avatar {
+            background-color: #ffc107;
+          }
+        }
+      }
+  
+      .text {
+        background-color: #e9f5ff;
+        padding: 5px 15px;
+        border-radius: 20px;
+        max-width: 80%;
+        text-wrap: balance;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+      }
+  
+      .user-message .text {
+        background-color: #e9f5ff;
+      }
+  
+      .team-message .text {
+        background-color: #f1f1f1;
+      }
+  
+      .chat-input {
+        display: flex;
+        align-items: center;
+        max-width: 600px;
+        margin: 10px auto;
+        padding: 7px;
+        background-color: #fff;
+        border-radius: 25px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+  
+      .chat-input input {
+        flex-grow: 1;
+        border: none;
+        outline: none;
+        padding: 10px;
+        border-radius: 25px;
+      }
+  
+      .chat-icons {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+        button:disabled {
+          cursor: no-drop;
+        }
+      }
+  
+      .icon-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        margin-left: 5px;
+      }
+    }
+  }

@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="subContainer">
+        <div class="videoPlayer">
+            <header>
+                <button routerLink="">Home</button>
+                <div class="titleHeader">
+                    <p><span>Video Title :</span> {{videoName}}</p>
+                    <p><span>Category :</span> {{Category}}</p>
+                </div>
+            </header>
+           <main>
+            <video #myVideo controls (timeupdate)="onTimeUpdate()">
+                <source [src]="video?.link" type="video/mp4">
+            </video>
+           </main>
+        </div>
+        <div class="transcriptContainer">
+            <div class="transcript-tabs">
+                <button class="tab" [ngClass]="{'active': isFullTranscript}" (click)="transcriptChange()">Full
+                    Transcription</button>
+                <button class="tab" [ngClass]="{'active': !isFullTranscript}" (click)="transcriptChange()">Matched
+                    Transcription</button>
+            </div>
+            @if(isFullTranscript) {
+                <div class="transcript-content">
+                    @for(item of video?.dataFull;track item;let i = $index) {
+                        <div class="transcript-item"
+                        [ngClass]="{ 'highlight': isCurrentTimeInRange(item.start, item.end) }">
+                        <input type="checkbox" (change)="onCheckboxChange($event, item.transcript,i)" [checked]="item.status">
+                        <span (click)="timeForwardBackward(item.start)">{{item.start | timeFormat }} - {{item.end | timeFormat }}. {{item.transcript}}</span>
+                    </div>
+                    }
+                   
+                </div>
+            }
+            @if(!isFullTranscript) {
+                <div class="transcript-content">
+                    @for(item of video?.data;track item;let i = $index) {
+                        <div class="transcript-item"
+                        [ngClass]="{ 'highlight': isCurrentTimeInRange(item.start, item.end) }">
+                        <span (click)="timeForwardBackward(item.start)"><b>{{item.start | timeFormat }} - {{item.end | timeFormat }}.</b> {{item.transcript}}</span>
+                    </div>
+                    }
+                </div>
+            }
+            
+        </div>
+    </div>
+    <div class="geminiContainer">
+        <div class="chat-container">
+            @for(item of chatHistory;track item) {
+                <div class="message user-message">
+                    <div class="avatar" [ngClass]="{'team-avatar': item.from === 'bot', 'user-avatar': item.from !== 'bot'}"></div>
+                    <pre class="text">{{item.message}}</pre>
+                </div>
+            }
+           
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Write Something..." [(ngModel)]="prompt" />
+            <div class="chat-icons">
+                <button class="icon-button" (click)="sendData()" [disabled]="prompt == ''">➤</button>
+            </div>
+        </div>
+    
+    </div>
+</div>

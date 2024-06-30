@@ -1,0 +1,37 @@
+<div class="body">
+    <div class="main-container">
+      <header>
+        <h1>Scrapio.AI</h1>
+      </header>
+      @if(videoArr.length > 0) {
+        <div class="container">
+            <main>
+              <div class="video-grid">
+                @for(video of videoArr; track video) {
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                          <video [src]="video?.video_link" (click)="visitPlayer(video?.v_id)"></video>
+                          <p>{{video.videoname}}</p>
+                        </div>
+                      </div>
+                }
+              </div>
+            </main>
+          </div>
+      }
+
+      @if(videoArr.length == 0 && isDataNotFound) {
+        <div class="notFound">
+            <h1>Data Not Found</h1>
+          </div>
+      }
+
+      
+      <footer>
+        <div class="search-bar">
+          <input type="text" placeholder="Search for videos..." [(ngModel)]="keyword" (keyup)="keyupFunc()" (keyup.enter)="onSearch()">
+          <button (click)="onSearch()" [disabled]="keyword == ''">Search</button>
+        </div>
+      </footer>
+    </div>
+  </div>
